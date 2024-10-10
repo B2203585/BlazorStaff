@@ -1,0 +1,31 @@
+@using BlazorStaff.Repositories
+@page "/stafflist"
+@rendermode InteractiveServer
+
+@inherits StaffListBase
+
+@if (staffs == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="card-group">
+        @foreach (var staff in staffs)
+        {
+            <div class="class m-3" style="min-width: 18rem; max-width: 30.5%;">
+                <div style="height: 100%" class="card h-100">
+                    <div class="card-header">
+                        <h3>@staff.FirstName @staff.LastName</h3>
+                    </div>
+                    <img class="card-img-top imageThumbnail" height="100%" src="uri:https://hatrabbits.com/wp-content/uploads/2017/01/random-word-1-736x306.jpg"/>
+                    <div class="card-footer text-center">
+                        <a href="@($"staffdetails/{staff.EmployeeId}")" class="btn btn-primary m-1">View</a>
+                        <a href="@($"editstaff/{staff.EmployeeId}")" class="btn btn-primary m-1">Edit</a>
+                        <a href="#" class="btn btn-danger m-1">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
